@@ -2,7 +2,7 @@ import { Inject } from "@tsed/di";
 import { PlatformApplication, Configuration } from "@tsed/common";
 import "@tsed/platform-express"; // /!\ keep this import
 import "@tsed/ajv";
-import {config, rootDir} from "@src/config"
+import { config } from "./config"
 import bodyParser from "body-parser";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -10,14 +10,15 @@ import methodOverride from "method-override";
 import compress from 'compression'
 import '@tsed/swagger'
 import { SteamController } from "./controllers/steam/SteamController";
+import { HealthController } from "./controllers/health/HealthController";
 
 @Configuration({
   ...config,
   acceptMimes: ["application/json"],
   httpPort: process.env.PORT || 8083,
-  httpsPort: false,
   mount: {
-    "/api": [ SteamController ]
+    "/api": [ SteamController ],
+    "/": [ HealthController ]
   },
   swagger: [
     {

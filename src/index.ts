@@ -15,3 +15,8 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+export default async function startServer() {
+  const platform = await bootstrap();
+  return platform;
+}

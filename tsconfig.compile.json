@@ -8,7 +8,7 @@
     "noResolve": false,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "noEmit": false,
+    "noEmit": true,
     "emitDeclarationOnly": false,
     "inlineSources": true
   }

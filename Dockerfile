@@ -14,34 +14,46 @@
 ##                                                                           ##
 ###############################################################################
 ###############################################################################
-ARG NODE_VERSION=16.13.1
+# ARG NODE_VERSION=16.14
 
-FROM node:${NODE_VERSION}-alpine as build
-WORKDIR /opt
+# FROM node:${NODE_VERSION}-alpine as build
 
-COPY package.json yarn.lock tsconfig.json tsconfig.compile.json ./
+# WORKDIR /opt
 
-RUN yarn install --pure-lockfile
+# COPY package.json yarn.lock tsconfig.json tsconfig.compile.json ./
 
-COPY ./src ./src
+# RUN yarn install --pure-lockfile
 
-RUN yarn build
+# COPY ./src ./src
 
-FROM node:${NODE_VERSION}-alpine as runtime
-ENV WORKDIR /opt
-WORKDIR $WORKDIR
+# RUN yarn build
 
-RUN apk update && apk add build-base git curl
-RUN npm install -g pm2
+# FROM node:${NODE_VERSION}-alpine as runtime
 
-COPY --from=build /opt .
+# WORKDIR /opt/app
 
-RUN yarn install --pure-lockfile --production
+# RUN chown node:node -R /opt/app
 
-COPY processes.config.js .
+# USER node
 
-EXPOSE 8081
-ENV PORT 8081
-ENV NODE_ENV production
+# COPY --from=build /opt/package.json /opt/yarn.lock /opt/tsconfig.json /opt/tsconfig.compile.json /opt/src ./ 
 
-CMD ["pm2-runtime", "start", "processes.config.js", "--env", "production"]
+# COPY --from=build /opt/dist ./dist
+
+# RUN yarn install --production --pure-lockfile
+
+# COPY processes.config.js .
+
+# EXPOSE 8081
+# ENV PORT 8081
+# ENV NODE_ENV production
+
+# CMD ["pm2-runtime", "start", "processes.config.js", "--env", "production"]
+FROM node:16.14-alpine
+WORKDIR /app
+COPY . .
+RUN ["yarn"]
+CMD ["node", "src/index.js"]
+EXPOSE 8083
+ENV PORT 8083
+CMD ["yarn", "start"]

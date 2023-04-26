@@ -1,4 +1,5 @@
-import { SteamGetHoursByProfileAndGameId } from '@src/usecase/SteamGetHoursByProfileAndGameId';
+
+import { SteamGetHoursByProfileAndGameId } from '../../usecase/SteamGetHoursByProfileAndGameId';
 import { Controller, Inject } from '@tsed/di';
 import { NotFound } from '@tsed/exceptions';
 import { PathParams } from '@tsed/platform-params';

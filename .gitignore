@@ -50,8 +50,11 @@ test/**/*.js.map
 
 # Project
 /public
-/dist
+# /dist
 
 #env
 .env.local
 .env.development
+node_modules
+dist
+coverage

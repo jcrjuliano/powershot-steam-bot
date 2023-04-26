@@ -14,7 +14,6 @@ export class GetSteamDataByProfileId {
         const response = await axios.get(`${this.steamClientUrl}/profiles/${profileId}/games?xml=1`);
         const xml = response.data;
         const xmlObject = await xml2js.parseStringPromise(xml);
-        const gamesXml = xmlObject.gamesList.games[0].game;
 
         const games: Game[] = xmlObject.gamesList.games[0].game;
 
