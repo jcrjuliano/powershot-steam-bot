@@ -1,9 +1,10 @@
-import { CollectionOf, Property } from "@tsed/schema"
+import { CollectionOf, Nullable, Property } from "@tsed/schema"
 import { Game } from "../game/Game"
 
 export class ProfileAndGameList {
     @Property()
-    steamID64: string
+    @Nullable(String)
+    steamID64?: string | null
     
     @Property()
     steamId: string

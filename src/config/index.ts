@@ -12,7 +12,7 @@ export const config: Partial<Configuration> = {
   client: {
     steam: {
       baseUrl: process.env.STEAM_BASE_URL || "https://steamcommunity.com",
+      idLength: process.env.STEAM_ID_LENGTH || 17,
     }
   }
-  // additional shared configuration
 };

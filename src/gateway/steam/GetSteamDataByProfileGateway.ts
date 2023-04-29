@@ -1,17 +1,24 @@
 import { Game } from "@src/domain/game/Game";
 import { ProfileAndGameList } from "@src/domain/steam/ProfileAndGameList";
-import { Service, Value } from "@tsed/di"
+import { Service, Value } from "@tsed/di";
 import axios from "axios";
 import xml2js from 'xml2js';
-
+import { GetSteamDataInterface } from "./GetSteamDataInterface";
 
 @Service()
-export class GetSteamDataByProfileId {
+export class GetSteamDataByProfileGateway implements GetSteamDataInterface {
     @Value("client.steam.baseUrl")
     private steamClientUrl: string
 
-    public async execute(profileId: string): Promise<ProfileAndGameList> {
-        const response = await axios.get(`${this.steamClientUrl}/profiles/${profileId}/games?xml=1`);
+    @Value("client.steam.idLength")
+    private steamIdLength: number
+
+    public verify = (steamProfileId: string) => 
+        steamProfileId.length === this.steamIdLength 
+        && isFinite(Number(steamProfileId))
+
+    public async execute(steamProfileId: string): Promise<ProfileAndGameList> {
+        const response = await axios.get(`${this.steamClientUrl}/profiles/${steamProfileId}/games?xml=1`);
         const xml = response.data;
         const xmlObject = await xml2js.parseStringPromise(xml);
 

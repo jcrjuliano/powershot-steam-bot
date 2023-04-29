@@ -15,6 +15,11 @@ export class SteamController {
   @Returns(200, String)
   @Returns(404, NotFound)
   async getHoursOnRecord(@PathParams('steamId') steamId: string, @PathParams('gameId') gameId: string): Promise<string> {
-    return this.steamGetHoursByProfileAndGameId.execute(steamId, gameId)
+    try {
+        return await this.steamGetHoursByProfileAndGameId.execute(steamId, gameId);
+    } catch (e) {
+        return e.message;
+    }
+    
   }
 }
