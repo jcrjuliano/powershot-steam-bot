@@ -18,14 +18,15 @@ export class SteamGetHoursByProfileAndGameId {
 
 
         const filteredGames = isNaN(Number(gameName)) ?
-            steamData.gameList.filter(game => game.name[0].toLowerCase().includes(gameName.toLowerCase())) : 
-            steamData.gameList.filter(game => game.appID[0] === gameName);
+            steamData.gameList.filter(game => game.name[0].toLowerCase().includes(gameName.toLowerCase()) && game['hoursOnRecord'] !== undefined) : 
+            steamData.gameList.filter(game => game.appID[0] === gameName && game['hoursOnRecord'] !== undefined);
             
         if (filteredGames.length === 0) {
             throw new Error(`Invalid game id or name: ${gameName} .`);
         }
 
-        const game = filteredGames[0];
-        return `${steamData.steamId} possui: ${game.hoursOnRecord[0]} horas de ${game.name}!`;
+        const returnMessage = filteredGames.map(game => `${game.hoursOnRecord[0]} horas de: ${game.name}`)
+
+        return `${steamData.steamId} possui: ${returnMessage.join(". ")}!`
     }
 }

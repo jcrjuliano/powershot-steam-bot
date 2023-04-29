@@ -20,6 +20,5 @@ export class SteamController {
     } catch (e) {
         return e.message;
     }
-    
   }
 }
