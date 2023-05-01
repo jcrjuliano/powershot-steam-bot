@@ -15,12 +15,12 @@ export class SteamGetHoursByProfileAndGameId {
         const gatewayList = [this.getSteamDataByIdGateway, this.getSteamDataByProfileGateway]
         const executeGateway = gatewayList.find(gateway => gateway.verify(profileId))
         const steamData = executeGateway ? await executeGateway.execute(profileId) : (() => { throw new Error(`Not found strategy for validating steamId: ${profileId}`); })();
-
-
+        if (steamData.gameList === undefined) {
+            throw new Error(`Can't access game list with steam id: ${profileId}. Make sure the game list is public and try again.`)
+        }
         const filteredGames = isNaN(Number(gameName)) ?
             steamData.gameList.filter(game => game.name[0].toLowerCase().includes(gameName.toLowerCase()) && game['hoursOnRecord'] !== undefined) : 
-            steamData.gameList.filter(game => game.appID[0] === gameName && game['hoursOnRecord'] !== undefined);
-            
+            steamData.gameList.filter(game => game.appID[0] === gameName && game['hoursOnRecord'] !== undefined);    
         if (filteredGames.length === 0) {
             throw new Error(`Invalid game id or name: ${gameName} .`);
         }
