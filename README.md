@@ -1,12 +1,9 @@
-<p style="text-align: center" align="center">
-  <a href="https://tsed.io" target="_blank"><img src="https://tsed.io/tsed-og.png" width="200" alt="Ts.ED logo"/></a>
-</p>
+# Powershot Steam BOT
+> Projeto usando framework TS.ED + Docker, onde é possível buscar horas de jogo de uma steam pública pelo steam name/Id + Game name/Id
+> * Typescript;
+> * Docker;
 
-<div align="center">
-  <h1>Ts.ED - powershot-steam-bot</h1>
-  <br />
-
-> An awesome project based on Ts.ED framework
+> Este projeto é interessante por usar alguns padrões de projetos interessantes!
 
 ## Getting started
 
@@ -28,10 +25,8 @@ $ yarn start:prod
 
 ```
 # build docker image
-docker compose build
+$ docker-compose build
 
 # start docker image
-docker compose up
+$ docker-compose up
 ```
-
-
