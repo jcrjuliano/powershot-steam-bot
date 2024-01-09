@@ -1,7 +1,9 @@
 # Powershot Steam BOT
+
 > Projeto usando framework TS.ED + Docker, onde é possível buscar horas de jogo de uma steam pública pelo steam name/Id + Game name/Id
-> * Typescript;
-> * Docker;
+>
+> - Typescript;
+> - Docker;
 
 > Este projeto é interessante por usar alguns padrões de projetos interessantes!
 

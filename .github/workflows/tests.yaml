@@ -1,0 +1,25 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  static-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: " 3.11"
+          cache: "pip"
+
+      - name: Install test dependencies
+        run: pip install pre-commit
+
+      - name: Run pre-commit Tests
+        run: pre-commit run --all-files --show-diff-on-failure

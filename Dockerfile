@@ -36,7 +36,7 @@
 
 # USER node
 
-# COPY --from=build /opt/package.json /opt/yarn.lock /opt/tsconfig.json /opt/tsconfig.compile.json /opt/src ./ 
+# COPY --from=build /opt/package.json /opt/yarn.lock /opt/tsconfig.json /opt/tsconfig.compile.json /opt/src ./
 
 # COPY --from=build /opt/dist ./dist
 
