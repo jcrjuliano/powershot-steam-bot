@@ -10,5 +10,5 @@ services:
         - no_proxy
     image: fetch-steam-data-new/server:latest
     ports:
-      - "8081:8081"
+      - "9020:9020"
 

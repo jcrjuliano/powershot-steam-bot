@@ -54,6 +54,6 @@ WORKDIR /app
 COPY . .
 RUN ["yarn"]
 CMD ["node", "src/index.js"]
-EXPOSE 8083
-ENV PORT 8083
+EXPOSE 9020
+ENV PORT 9020
 CMD ["yarn", "start"]

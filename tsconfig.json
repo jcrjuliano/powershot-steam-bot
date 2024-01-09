@@ -33,6 +33,6 @@
       "@src/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "Dummy.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "./public", "dist"]
 }
