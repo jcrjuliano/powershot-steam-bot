@@ -1,11 +1,11 @@
 import { Game } from "@src/domain/game/Game";
 import { ProfileAndGameList } from "@src/domain/steam/ProfileAndGameList";
-import { Service, Value } from "@tsed/di";
+import { Injectable, Value } from "@tsed/di";
 import axios from "axios";
 import xml2js from 'xml2js';
 import { GetSteamDataInterface } from "./GetSteamDataInterface";
 
-@Service()
+@Injectable()
 export class GetSteamDataByProfileGateway implements GetSteamDataInterface {
     @Value("client.steam.baseUrl")
     private steamClientUrl: string
