@@ -59,5 +59,5 @@ node_modules
 dist
 coverage
 
-# Yarn lock
-yarn.lock
+# lock files
+*.lock
