@@ -15,7 +15,7 @@ import '@tsed/swagger'
   httpPort: process.env.PORT || 9020,
   httpsPort: false,
   mount: {
-    '/': [`${rootDir}/controllers/**/*.ts`],
+    '/api': [`${rootDir}/controllers/**/*.ts`],
   },
   swagger: [
     {
